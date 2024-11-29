@@ -107,6 +107,8 @@
     "text_encoding": "cpp",
     "typeinfo": "cpp",
     "variant": "cpp",
-    "map": "cpp"
+    "map": "cpp",
+    "stack": "cpp",
+    "cassert": "cpp"
   }
 }
