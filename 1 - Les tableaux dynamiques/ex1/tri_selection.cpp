@@ -14,7 +14,7 @@ void tri_insertion(std::vector<int>& vect, int new_element) {
 
 int main() {
     std::vector<int> sorted_vect = {1, 3, 5, 7, 9};
-    std::vector<int> new_elements = {4, 2, 10, 6};
+    std::vector<int> new_elements = {4, 1 , 2, 10, 6};
     for (int elem : new_elements) {
         tri_insertion(sorted_vect, elem);
     }
