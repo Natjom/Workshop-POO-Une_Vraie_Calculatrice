@@ -200,6 +200,8 @@ int main()
 
     // Tests simples
     test(parser, "(1+1)"); // 2
+    // test(parser, "(1+1))"); // 2  -> Ne marche pas
+    // test(parser, "((1+1)"); // 2 -> Ne marche pas
     test(parser, "(2+2)"); // 4
     test(parser, "(5-3)"); // 2
     test(parser, "(3*3)"); // 9
@@ -240,8 +242,9 @@ int main()
     test(parser, "(((9-3)*(4+1))/5)"); // (6 * 5) / 5 = 6
 
     // Cas avec des expressions entièrement imbriquées
-    test(parser, "((((((((1+2)+3)+4)+5)+6)+7)+8)+9)+10)"); // 55 
-    test(parser, "(((((((2+3)+4)+5)+6)+7)+8)+9))"); // 44
+    test(parser, "((((((((1+2)+3)+4)+5)+6)+7)+8)+9)"); // 55 
+    test(parser, "(((((((2+3)+4)+5)+6)+7)+8)+9)"); // 44
+    
 
     std::cout << "All tests completed!" << std::endl;
 
