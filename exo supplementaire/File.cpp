@@ -22,7 +22,7 @@ void File::addClient(const Client& c) {
 
 void File::removeClient() {
     if (front == nullptr) { 
-        std::cout << "La file est vide, rien à supprimer." << std::endl;
+        std::cout << "La file est vide, rien a supprimer." << std::endl;
         return;
     }
     Node* temp = front;     
