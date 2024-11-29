@@ -1,0 +1,14 @@
+Implémenter une classe UniqueList dont l’objectif est de maintenir l’unicité des éléments insérés dans une liste. 
+Pour aboutir, nous utiliserons une table de hachage afin de déterminer efficacement la présence ou non d’un objet.
+Il s’agira de conserver une liste d’entiers dans un conteneur de type std::vector. 
+A chaque ajout d’un nouvel entier en fin de tableau, la présence d’un doublon est vérifiée par l’interrogation 
+d’un objet std::unordered_map. Le cas échéant, l’insertion échoue. Pour aboutir les contraintes suivantes devront être respectées :
+
+- Utiliser une liste std::vector<int> pour stocker des entiers.
+- Utiliser une table de hachage std::unordered_map<int, bool> pour suivre la présence des entiers dans le vecteur.
+- Implémenter une méthode bool hasValue(int val) pour vérifier la présence de l’entier val dans la liste.
+- Implémenter une méthode bool hasValue(int val) pour ajouter un entier à la liste s’il n’est pas déjà présent.
+- Implémenter une méthode bool remove(int val) pour supprimer un entier de la liste s’il est présent.
+- Implémenter une méthode print() pour afficher le contenu du vecteur.
+
+
