@@ -188,24 +188,63 @@ public:
     }
 };
 
-void testParser()
-{
-    Parser parser;
 
-    assert(parser.parse("((9+5)+((3+1)+(2+4)))") == 30);
-    assert(parser.parse("(1+1)") == 2);
-    assert(parser.parse("((1+1)+1)") == 3);
-
-    std::cout << "All tests passed!" << std::endl;
+void test(Parser parser, std::string exp) {
+    int result = parser.parse(exp);
+    std::cout << "Expression: " << exp << " -> Result: " << result << std::endl;
 }
 
 int main()
 {
     Parser parser;
 
-    std::string expression = "((9+5)*((3+2)+(2+4)))";
-    int result = parser.parse(expression);
+    // Tests simples
+    test(parser, "(1+1)"); // 2
+    test(parser, "(2+2)"); // 4
+    test(parser, "(5-3)"); // 2
+    test(parser, "(3*3)"); // 9
+    test(parser, "(6/2)"); // 3
 
-    std::cout << "Result: " << result << std::endl; 
+    // Tests avec plusieurs opérateurs
+    test(parser, "((1+2)*(3+4))"); // (3 * 7) = 21
+    test(parser, "((5+3)/(2+2))"); // (8 / 4) = 2
+
+    // Tests avec des parenthèses imbriquées
+    test(parser, "(((1+2)+3)+4)"); // ((3+3)+4) = 10
+    test(parser, "(((((1+1)+1)+1)+1)+1)"); // 6
+
+    // Tests avec des opérateurs de différents types
+    test(parser, "(2+2)*(3-1)"); // 4 * 2 = 8
+    test(parser, "(6-2)*(4+1)"); // 4 * 5 = 20
+    test(parser, "((5*5)+(3+2))"); // 25 + 5 = 30
+    test(parser, "(6/(3-1))*(2+2)"); // 3 * 4 = 12
+
+    // Tests avec des calculs plus complexes
+    test(parser, "((9+5)*((3+2)+(2+4)))"); // (14 * (5 + 6)) = 154
+    test(parser, "(((1+1)*(2+3))/(3))"); // ((2 * 5) / 3) = 3
+    test(parser, "(((3+2)*(2+4))/(4))"); // ((5 * 6) / 4) = 7
+    test(parser, "(((5+5)*(4+1))/(5))"); // ((10 * 5) / 5) = 10
+
+    // Cas limite
+    test(parser, "(((9+9)+(9+9))*(9/9))"); // ((18 + 18) * 1) = 36
+    test(parser, "(((((1+1)+1)+1)+1)+1)"); // 6
+    test(parser, "(1+1)+(1+1)+(1+1)"); // 2 + 2 + 2 = 6
+
+    // Tests avec division
+    test(parser, "(6/3)+(9/3)"); // 2 + 3 = 5
+    test(parser, "(9/(3+3))"); // 9 / 6 = 1 (division flottante ou erreur si entiers)
+    
+    // Tests avec expressions complexes et profondeur de parenthèses
+    test(parser, "((((((2+2)*2)-3)/2)+4)*2)"); // Complexe, évaluer étape par étape
+    test(parser, "((3+5)*(6-4))"); // 8 * 2 = 16
+    test(parser, "(((9-3)*(4+1))/5)"); // (6 * 5) / 5 = 6
+
+    // Cas avec des expressions entièrement imbriquées
+    test(parser, "((((((((1+2)+3)+4)+5)+6)+7)+8)+9)+10)"); // 55 
+    test(parser, "(((((((2+3)+4)+5)+6)+7)+8)+9))"); // 44
+
+    std::cout << "All tests completed!" << std::endl;
+
     return 0;
 }
+
